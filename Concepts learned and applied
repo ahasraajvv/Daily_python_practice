@@ -29,6 +29,136 @@ Take input → split values → convert each value to int → store in list
 `lambda` is a small one-line function without a name.
 
 ```python
+
+# 🧠 Day 01 — Python Logic Card
+
+```text
+INPUT LINE
+"1 2 3"
+   ↓ split()
+["1", "2", "3"]
+   ↓ map(int)
+[1, 2, 3]
+```
+
+## `map()`
+
+`map()` is like an internal loop.
+
+```python
+numbers = list(map(int, input().split()))
+```
+
+Memory:
+
+```text
+map(function, items)
+= apply same function to every item
+```
+
+---
+
+```text
+lambda x: x * 2
+
+x      → input
+x * 2  → output
+```
+
+## `lambda`
+
+`lambda` is a small one-line function.
+
+```python
+double = lambda x: x * 2
+```
+
+Same as:
+
+```python
+def double(x):
+    return x * 2
+```
+
+Memory:
+
+```text
+lambda input : output
+```
+
+---
+
+```text
+names = ["apple", "banana", "cherry"]
+
+names[1]     → "banana"
+names[1][0]  → "b"
+```
+
+## List Accessing
+
+Use index to take values from a list.
+
+```python
+print(names[0])      # apple
+print(names[1][0])   # b
+```
+
+Memory:
+
+```text
+list[index] = item
+list[index][char_index] = character inside string
+```
+
+---
+
+```text
+for every x
+    for every y
+        for every z
+            create one combination
+```
+
+## Nested Loops
+
+Nested loops are used to generate combinations.
+
+```python
+for x in range(2):
+    for y in range(2):
+        for z in range(2):
+            print(x, y, z)
+```
+
+Memory:
+
+```text
+Nested loop = loop inside loop
+Useful for combinations and patterns
+```
+
+---
+
+## Today’s Logic Upgrade
+
+```text
+Before:
+Loop = repeat
+
+Now:
+Loop = generate patterns
+map() = apply action to all items
+lambda = short function
+nested loop = create combinations
+```
+
+## Git Commit
+
+```bash
+git commit -m "Day 01: practiced map lambda list access and nested loops"
+```
+
 double = lambda x: x * 2
 ```
 
