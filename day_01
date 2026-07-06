@@ -42,3 +42,24 @@ for i in range(0, len(coord[0])):
                 final_list.append([coord[0][i], coord[1][j], coord[2][k]])
 
 print(final_list)
+
+
+
+# 2nd problem 
+
+num = list(map(int, input("Enter your numbers in one line separated by spaces: ").split()))   
+
+num_2 = ["Even" if i % 2 == 0 else "Odd" for i in num]
+
+
+print (num_2)
+
+
+
+
+
+
+
+
+
+
