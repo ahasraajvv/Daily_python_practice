@@ -1,0 +1,110 @@
+# Day 01 - Python Logic Practice
+
+## Problem Solved
+
+Platform: HackerRank
+Topic: List comprehension / nested loops / filtering combinations
+
+## Concepts I Practiced Today
+
+### 1. `map()`
+
+`map()` is like an internal loop.
+It applies the same function to every item.
+
+```python
+numbers = list(map(int, input().split()))
+```
+
+Meaning:
+
+```text
+Take input → split values → convert each value to int → store in list
+```
+
+---
+
+### 2. `lambda`
+
+`lambda` is a small one-line function without a name.
+
+```python
+double = lambda x: x * 2
+```
+
+Same as:
+
+```python
+def double(x):
+    return x * 2
+```
+
+Use `lambda` only for small logic.
+
+---
+
+### 3. List Accessing
+
+A list stores many values.
+We access values using index.
+
+```python
+names = ["apple", "banana", "cherry"]
+
+print(names[0])      # apple
+print(names[1])      # banana
+print(names[1][0])   # b
+```
+
+Memory:
+
+```text
+list[index] = item
+list[index][character_index] = character inside string
+```
+
+---
+
+### 4. Nested For Loops
+
+Nested loops are useful when we need combinations.
+
+```python
+for x in range(2):
+    for y in range(2):
+        for z in range(2):
+            print(x, y, z)
+```
+
+This means:
+
+```text
+For every x,
+    try every y,
+        try every z
+```
+
+Nested loops help generate all possible combinations.
+
+---
+
+## What Changed in My Thinking Today
+
+Before, I saw loops as just repetition.
+
+Now I understand:
+
+```text
+Loops can generate patterns.
+map() can apply one action to all items.
+lambda can make small functions shorter.
+Nested loops can create combinations.
+```
+
+My coding logic is improving because I am starting to recognize patterns instead of memorizing syntax.
+
+## Commit Message
+
+```bash
+git commit -m "Day 01: practiced map lambda list access and nested loops"
+```
