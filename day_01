@@ -1,0 +1,33 @@
+x = int(input("Enter a  X: "))
+y = int(input("Enter a  Y: "))
+z = int(input("Enter a  Z: "))
+n = int(input("Enter a  n: "))
+final_list = []
+
+x_list = []
+y_list = []
+z_list = []
+
+for i in range(0, x + 1):
+    x_list.append(i)
+
+for i in range(0, y + 1):
+    y_list.append(i)
+
+for i in range(0, z + 1):
+    z_list.append(i)
+
+cord = [ x_list, y_list, z_list]
+
+for i in range(0, len(cord[0])):                      # nested 'for' loop for creating number swaping and permutation of given set of numbers 
+
+    for j in range(0, len(cord[1])):
+
+        for k in range(0, len(cord[2])):
+
+            if (cord[0][i] + cord[1][j] + cord[2][k]) != n:
+                final_list.append([cord[0][i], cord[1][j], cord[2][k]])
+
+
+print(final_list)
+
