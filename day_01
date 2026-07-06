@@ -1,33 +1,44 @@
-x = int(input("Enter a  X: "))
-y = int(input("Enter a  Y: "))
-z = int(input("Enter a  Z: "))
-n = int(input("Enter a  n: "))
+# Day Practice - Nested Loops / Coordinate Combinations
+# Problem:
+# Generate all possible [i, j, k] coordinates where:
+# 0 <= i <= x
+# 0 <= j <= y
+# 0 <= k <= z
+# But exclude combinations where i + j + k == n
+
+x = int(input("Enter X: "))
+y = int(input("Enter Y: "))
+z = int(input("Enter Z: "))
+n = int(input("Enter n: "))
+
 final_list = []
 
+# Create x values from 0 to x
 x_list = []
-y_list = []
-z_list = []
-
 for i in range(0, x + 1):
     x_list.append(i)
 
+# Create y values from 0 to y
+y_list = []
 for i in range(0, y + 1):
     y_list.append(i)
 
+# Create z values from 0 to z
+z_list = []
 for i in range(0, z + 1):
     z_list.append(i)
 
-cord = [ x_list, y_list, z_list]
+# Store all coordinate value lists together
+coord = [x_list, y_list, z_list]
 
-for i in range(0, len(cord[0])):                      # nested 'for' loop for creating number swaping and permutation of given set of numbers 
+# Generate all possible coordinate combinations
+for i in range(0, len(coord[0])):
+    for j in range(0, len(coord[1])):
+        for k in range(0, len(coord[2])):
 
-    for j in range(0, len(cord[1])):
+            current_sum = coord[0][i] + coord[1][j] + coord[2][k]
 
-        for k in range(0, len(cord[2])):
-
-            if (cord[0][i] + cord[1][j] + cord[2][k]) != n:
-                final_list.append([cord[0][i], cord[1][j], cord[2][k]])
-
+            if current_sum != n:
+                final_list.append([coord[0][i], coord[1][j], coord[2][k]])
 
 print(final_list)
-
