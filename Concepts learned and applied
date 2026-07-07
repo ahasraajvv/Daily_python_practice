@@ -233,8 +233,165 @@ Nested loops can create combinations.
 
 My coding logic is improving because I am starting to recognize patterns instead of memorizing syntax.
 
+
 ## Commit Message
 
 ```bash
 git commit -m "Day 01: practiced map lambda list access and nested loops"
 ```
+
+
+# Day 02 — New Concepts Learned and Applied
+
+## Topic
+Dictionary / Student marks average / Input unpacking / Decimal formatting
+
+---
+
+## 1. Dictionary Key-Value Storage
+
+A dictionary stores data in pairs:
+
+key → value
+
+In this problem:
+
+student name → marks list
+
+Meaning:
+Instead of searching manually, we can use the student name directly to get that student’s marks.
+
+Memory:
+Dictionary is useful when one value should be found using a specific name/key.
+
+---
+
+## 2. Input Unpacking
+
+Input unpacking means splitting one input line into different variables.
+
+In this problem:
+- First value becomes the student name
+- Remaining values become the marks
+
+Memory:
+First item → name  
+Remaining items → marks list
+
+---
+
+## 3. Starred Variable Concept
+
+The starred variable collects multiple remaining values into one list.
+
+Meaning:
+When the number of remaining values is more than one, the starred variable can collect them together.
+
+Memory:
+Starred variable = collect the remaining items.
+
+---
+
+## 4. Using `map()` for Conversion
+
+`map()` applies the same function to every item.
+
+In this problem, marks first come as text/string.  
+They must be converted into decimal numbers before calculation.
+
+Memory:
+map(function, items) = apply function to every item.
+
+---
+
+## 5. Float Values
+
+Float means decimal number.
+
+Marks are converted into float because average can produce decimal values.
+
+Memory:
+Use float when the answer may contain decimal points.
+
+---
+
+## 6. Accessing Dictionary Value Using Key
+
+After storing student marks in a dictionary, we can access the required student’s marks using the student name.
+
+Memory:
+dictionary key gives the stored value.
+
+---
+
+## 7. Sum and Length for Average
+
+To calculate average:
+
+total marks / number of marks
+
+Concepts used:
+- sum gives total
+- length gives count
+- total divided by count gives average
+
+Memory:
+Average = total / count
+
+---
+
+## 8. Decimal Formatting
+
+The answer must be printed with exactly 2 digits after the decimal point.
+
+Example idea:
+50 becomes 50.00  
+56.666 becomes 56.67
+
+Memory:
+Decimal formatting makes output clean and matches problem requirements.
+
+---
+
+## 9. Mistake Learned
+
+Mistake:
+Wrong spelling while calling a variable/key.
+
+Lesson:
+Always check:
+- variable names
+- dictionary keys
+- spelling
+- brackets
+- indentation
+
+---
+
+## Day 02 Logic Upgrade
+
+Before:
+I saw dictionary only as a storage concept.
+
+Now:
+I understand dictionary as a connection system.
+
+student name → marks  
+query name → find marks  
+marks → calculate average  
+average → format output
+
+---
+
+## Final Memory Line
+
+Dictionary helps me find the correct data fast using a key.
+Input unpacking separates name and marks.
+map converts all marks.
+sum and length calculate average.
+decimal formatting makes the final answer correct.
+
+
+
+
+
