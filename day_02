@@ -1,16 +1,30 @@
+---
+
+# Day 02 - New Concepts Learned and Applied
+
+## Problem Solved
+
+Platform: HackerRank  
+Topic: Dictionary / Student marks average / Float formatting
+
+---
+
+## Code Practiced
+
+```python
 if __name__ == '__main__':
     n = int(input())
+
     student_marks = {}
+
     for _ in range(n):
         name, *line = input().split()
         scores = list(map(float, line))
         student_marks[name] = scores
+
     query_name = input()
-    
-    sum1 = sum(student_marks[query_name])  # mistake done (entered wrong calling always check for spelling)
-    
+
+    sum1 = sum(student_marks[query_name])
     avg1 = sum1 / len(student_marks[query_name])
-    
-    print(f"{avg1:.2f}") # here .2f is used to round off the average to 2 decimal places.(mistake and learn from this
-    
-    
+
+    print(f"{avg1:.2f}")
