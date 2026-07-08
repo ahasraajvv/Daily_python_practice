@@ -392,6 +392,15 @@ sum and length calculate average.
 decimal formatting makes the final answer correct.
 
 
+# Day 3 - Python Nested List: Finding the Second Lowest Score
 
+## Problem Practiced
+
+Today I solved a Python nested list problem where each student has a name and score.
+
+Each record is stored like this:
+
+```python
+[name, score]
 
 
