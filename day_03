@@ -1,0 +1,41 @@
+
+
+# nested list 
+if __name__ == '__main__':
+    
+    records =[]
+    lowest = float('inf')  # initializing the lowest score to infinity
+    sec_lowest = float('inf')  # initializing the second lowest score to infinity
+    
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        records.append([name, score])
+
+      # sorting based on the second value of the list (the score)
+
+    for i in records:
+
+        if i[1] < lowest:                                      # checking if the score is less than the lowest score   ##sec_lowest= records [1][1] wrong 
+            sec_lowest = lowest                                # updating the second lowest score to the previous lowest score
+            lowest = i[1]                                      # updating the lowest score to the current score
+        elif i[1] < sec_lowest and i[1] != lowest:             # checking if the score is less than the second lowest score and not equal to the lowest score
+            sec_lowest = i[1]                                  # updating the second lowest score to the current score
+
+    
+    
+    out_put = []                                              # creating an empty list to store the names of students with the second lowest score
+    for i in records:
+        if i[1] == sec_lowest: out_put.append(i)              # checking if the score is equal to the second lowest score
+
+  
+    if len(out_put) > 1: 
+                                                               # checking if there are multiple students with the second lowest score
+
+        out_put.sort(reverse=False)                            # alphabetic sorting (the sort func will sort the first value of the list if the datatype is string and  integer 
+            # print the sorted list
+        print(out_put[0][0]) #
+        print(out_put[1][0]) #
+
+    else:
+        print(out_put[0][0])  # printing the name of the student with the second lowest score
