@@ -1,0 +1,202 @@
+# ============================================================
+# Day 04 - HackerRank List Commands Problem
+# Topic: Python Lists, Commands, map(), unpacking, list methods
+# ============================================================
+#
+# Problem:
+# We are given N commands.
+# Based on each command, we need to perform operations on a list.
+#
+# Commands:
+# insert i e  -> insert value e at index i
+# print       -> print the current list
+# remove e    -> remove first occurrence of value e
+# append e    -> add value e at the end
+# sort        -> sort the list in ascending order
+# pop         -> remove last element
+# reverse     -> reverse current list order
+#
+# ============================================================
+# My Learning Report / Mistakes / Concepts Recalled
+# ============================================================
+#
+# 1. Mistake: I thought HackerRank expected final output as one block.
+#
+#    I created a separate list called show = [] and stored every print output.
+#    My thinking:
+#
+#       show.append(list1.copy())
+#
+#    Then I printed all saved outputs at the end.
+#
+#    But HackerRank problem says:
+#       "For each command of type print, print the list on a new line."
+#
+#    Meaning:
+#       When command == "print", print immediately.
+#
+#    Correct:
+#       print(arr)
+#
+# ------------------------------------------------------------
+#
+# 2. Concept learned: Expected Output block does not mean store output.
+#
+#    HackerRank shows all printed lines together in one output box.
+#    But in code, every print() should happen at the correct time.
+#
+#    Memory:
+#       Expected Output block = result of all print() statements
+#       It does not mean we should collect outputs and print later.
+#
+# ------------------------------------------------------------
+#
+# 3. Mistake: remove(value) vs remove(value[0])
+#
+#    From this line:
+#
+#       command, *value = input().split()
+#
+#    If input is:
+#
+#       remove 6
+#
+#    Then:
+#
+#       command = "remove"
+#       value = ["6"]
+#
+#    After map:
+#
+#       value = [6]
+#
+#    So value is still a list.
+#
+#    Wrong:
+#       arr.remove(value)      # means arr.remove([6])
+#
+#    Correct:
+#       arr.remove(value[0])   # means arr.remove(6)
+#
+# ------------------------------------------------------------
+#
+# 4. Concept learned: map() conversion
+#
+#    input().split() always gives strings.
+#
+#    Example:
+#       "insert 0 5" becomes ["insert", "0", "5"]
+#
+#    So numbers must be converted into int.
+#
+#    Correct:
+#       value = list(map(int, value))
+#
+#    Meaning:
+#       Take every item inside value and apply int() to it.
+#
+# ------------------------------------------------------------
+#
+# 5. Mistake: reverse vs sort(reverse=True)
+#
+#    reverse command means reverse the current order of the list.
+#
+#    Correct:
+#       arr.reverse()
+#
+#    Wrong:
+#       arr.sort(reverse=True)
+#
+#    Difference:
+#       arr.reverse()          -> just flips current list
+#       arr.sort(reverse=True) -> sorts from big to small
+#
+# ------------------------------------------------------------
+#
+# 6. Concept learned: command, *value unpacking
+#
+#    Example:
+#       input: insert 0 5
+#
+#    Code:
+#       command, *value = input().split()
+#
+#    Result:
+#       command = "insert"
+#       value = ["0", "5"]
+#
+#    The first word goes to command.
+#    The remaining words go inside value as a list.
+#
+# ------------------------------------------------------------
+#
+# 7. Extra concept accidentally learned: list copy vs reference
+#
+#    show.append(list1)
+#       Stores the same list reference.
+#       If list1 changes later, saved output also changes.
+#
+#    show.append(list1.copy())
+#       Stores a snapshot/copy of the list at that moment.
+#
+#    This was a good concept, but not needed for this HackerRank problem.
+#
+# ============================================================
+# Final Accepted Code
+# ============================================================
+
+if __name__ == '__main__':
+
+    # Read number of commands
+    N = int(input())
+
+    # Initialize empty list
+    arr = []
+
+    # Repeat for N commands
+    for _ in range(N):
+
+        # Split the input command
+        # Example input: insert 0 5
+        # command = "insert"
+        # value = ["0", "5"]
+        command, *value = input().split()
+
+        # Convert all values from string to integer
+        # Example: ["0", "5"] becomes [0, 5]
+        value = list(map(int, value))
+
+        # insert i e
+        # Insert value e at index i
+        if command == "insert":
+            arr.insert(value[0], value[1])
+
+        # print
+        # Print immediately when command is print
+        elif command == "print":
+            print(arr)
+
+        # remove e
+        # Remove the first occurrence of value e
+        elif command == "remove":
+            arr.remove(value[0])
+
+        # append e
+        # Add value e at the end of the list
+        elif command == "append":
+            arr.append(value[0])
+
+        # sort
+        # Sort the list in ascending order
+        elif command == "sort":
+            arr.sort()
+
+        # pop
+        # Remove the last element from the list
+        elif command == "pop":
+            arr.pop()
+
+        # reverse
+        # Reverse the current order of the list
+        elif command == "reverse":
+            arr.reverse()
