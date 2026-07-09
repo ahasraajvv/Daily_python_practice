@@ -404,3 +404,26 @@ Each record is stored like this:
 [name, score]
 
 
+# Day 04 - What I Learned and Applied
+
+## Problem Practiced
+
+HackerRank Python Lists Problem
+
+The task was to read multiple commands from the user and perform list operations based on those commands.
+
+---
+
+## Concepts I Learned
+
+### 1. List Methods
+
+I practiced important Python list methods:
+
+```python
+insert()
+append()
+remove()
+sort()
+pop()
+reverse()
