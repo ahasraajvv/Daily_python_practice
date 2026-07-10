@@ -404,7 +404,7 @@ Each record is stored like this:
 [name, score]
 
 
-# Day 04 - What I Learned and Applied
+# Day 05 - What I Learned and Applied
 
 ## Problem Practiced
 
@@ -427,3 +427,17 @@ remove()
 sort()
 pop()
 reverse()
+# Day Practice - Swap Case in Python
+
+## Problem Practiced
+
+Given a string, convert:
+- Uppercase letters to lowercase
+- Lowercase letters to uppercase
+- Keep numbers, spaces, and symbols unchanged
+
+Example:
+
+Input:
+```text
+HackerRank.com presents "Pythonist 2".
