@@ -1,0 +1,33 @@
+# Day Practice - Swap Case in String
+# Problem:
+# Given a string, convert every uppercase letter to lowercase
+# and every lowercase letter to uppercase.
+# Keep numbers, spaces, and symbols unchanged.
+
+def swap_case(s):
+    # Empty string to store the final converted result
+    result = ""
+
+    # Loop through each character in the string
+    for char in s:
+
+        # If the character is uppercase, convert it to lowercase
+        if char.isupper():
+            result = result + char.lower()
+
+        # If the character is lowercase, convert it to uppercase
+        elif char.islower():
+            result = result + char.upper()
+
+        # If it is number, space, or symbol, keep it unchanged
+        else:
+            result = result + char
+
+    # Return the final swapped string
+    return result
+
+
+if __name__ == '__main__':
+    s = input("Enter a string: ")
+    result = swap_case(s)
+    print(result)
