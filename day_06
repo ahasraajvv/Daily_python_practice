@@ -1,0 +1,67 @@
+# HackerRank - Designer Door Mat
+#
+# The mat size is N × M.
+# N must be an odd number.
+# M is three times N.
+#
+# Example:
+# Input: 7 21
+# N = 7 rows
+# M = 21 columns
+
+
+def create_door_mat(n, m):
+    """Create and display the designer door mat."""
+
+    # Upper half of the mat
+    # Pattern counts: 1, 3, 5, ...
+    for pattern_count in range(1, n, 2):
+        pattern = ".|." * pattern_count
+
+        # center() places the pattern in the middle
+        # and fills the remaining space with "-"
+        print(pattern.center(m, "-"))
+
+    # Middle row of the mat
+    print("WELCOME".center(m, "-"))
+
+    # Lower half of the mat
+    # Pattern counts decrease in reverse: ..., 5, 3, 1
+    for pattern_count in range(n - 2, 0, -2):
+        pattern = ".|." * pattern_count
+        print(pattern.center(m, "-"))
+
+
+if __name__ == "__main__":
+    # Read N and M from the user
+    n, m = map(int, input().split())
+
+    # Validate the input
+    if n <= 0 or n % 2 == 0:
+        print("N must be a positive odd number.")
+
+    elif m != n * 3:
+        print("M must be three times N.")
+
+    else:
+        create_door_mat(n, m)
+
+
+## output:
+---------.|.---------
+------.|..|..|.------
+---.|..|..|..|..|.---
+-------WELCOME-------
+---.|..|..|..|..|.---
+------.|..|..|.------
+---------.|.---------
+
+
+
+
+
+
+
+
+
+          
