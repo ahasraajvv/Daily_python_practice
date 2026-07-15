@@ -441,3 +441,416 @@ Example:
 Input:
 ```text
 HackerRank.com presents "Pythonist 2".
+day_06
+# Python Revision — Designer Door Mat
+
+## Problem
+
+Create a door mat of size `N × M`.
+
+The conditions are:
+
+- `N` must be an odd natural number.
+- `M` must be three times `N`.
+- `WELCOME` must appear in the centre.
+- The design uses `.`, `|` and `-` characters.
+
+Example:
+
+```text
+N = 7
+M = 21
+```
+
+---
+
+## Concepts Learned and Revised
+
+### 1. Reading multiple inputs
+
+```python
+n, m = map(int, input().split())
+```
+
+Explanation:
+
+```text
+input()
+    ↓
+Reads the complete input as a string
+
+split()
+    ↓
+Separates the values using spaces
+
+map(int, ...)
+    ↓
+Converts each value into an integer
+
+n, m
+    ↓
+Stores the two converted values
+```
+
+For this input:
+
+```text
+7 21
+```
+
+The values become:
+
+```python
+n = 7
+m = 21
+```
+
+---
+
+## 2. Odd and even numbers
+
+An odd number leaves a remainder of `1` when divided by `2`.
+
+```python
+number % 2 != 0
+```
+
+An even number leaves a remainder of `0`.
+
+```python
+number % 2 == 0
+```
+
+Since the door mat must contain one exact centre row, `N` must be odd.
+
+Example:
+
+```text
+N = 7
+```
+
+The fourth row is the centre row.
+
+```text
+Rows above centre: 3
+Centre row:         1
+Rows below centre: 3
+```
+
+---
+
+## 3. Finding the middle position
+
+For an odd sequence from `1` to `N`, the middle position is:
+
+```python
+middle = (n // 2) + 1
+```
+
+For `N = 7`:
+
+```text
+7 // 2 = 3
+3 + 1 = 4
+```
+
+Therefore, the fourth row is the middle row.
+
+```text
+1, 2, 3, [4], 5, 6, 7
+```
+
+---
+
+## 4. Using `range()`
+
+The upper pattern must increase using odd numbers:
+
+```text
+1, 3, 5
+```
+
+This is produced using:
+
+```python
+range(1, n, 2)
+```
+
+For `n = 7`:
+
+```python
+range(1, 7, 2)
+```
+
+produces:
+
+```text
+1, 3, 5
+```
+
+The arguments are:
+
+```text
+range(start, stop, step)
+```
+
+- `start = 1`
+- `stop = n`
+- `step = 2`
+
+---
+
+## 5. Reversing a range
+
+The lower section must decrease:
+
+```text
+5, 3, 1
+```
+
+This is produced using:
+
+```python
+range(n - 2, 0, -2)
+```
+
+For `n = 7`:
+
+```python
+range(5, 0, -2)
+```
+
+produces:
+
+```text
+5, 3, 1
+```
+
+The negative step moves backwards.
+
+---
+
+## 6. String multiplication
+
+Python can repeat a string using the multiplication operator.
+
+```python
+pattern = ".|." * 3
+```
+
+Result:
+
+```text
+.|..|..|.
+```
+
+In the program:
+
+```python
+pattern = ".|." * pattern_count
+```
+
+The value of `pattern_count` changes during each loop.
+
+For example:
+
+```text
+pattern_count = 1 → .|.
+pattern_count = 3 → .|..|..|.
+pattern_count = 5 → .|..|..|..|..|.
+```
+
+---
+
+## 7. Using `center()`
+
+The `center()` string method places text in the middle of a fixed width.
+
+Syntax:
+
+```python
+text.center(width, fill_character)
+```
+
+Example:
+
+```python
+".|.".center(21, "-")
+```
+
+Output:
+
+```text
+---------.|.---------
+```
+
+In this problem:
+
+```python
+print(pattern.center(m, "-"))
+```
+
+- `pattern` is placed in the centre.
+- `m` is the total width.
+- `-` fills the empty space.
+
+---
+
+## 8. Dividing the pattern into sections
+
+The complete door mat contains three sections:
+
+```text
+Upper half
+Middle row
+Lower half
+```
+
+For `N = 7`:
+
+```text
+Upper pattern counts: 1, 3, 5
+Middle row:           WELCOME
+Lower pattern counts: 5, 3, 1
+```
+
+The pattern is symmetrical.
+
+```text
+1
+3
+5
+WELCOME
+5
+3
+1
+```
+
+---
+
+## 9. Functions
+
+The design logic was placed inside a function:
+
+```python
+def create_door_mat(n, m):
+```
+
+A function helps:
+
+- Organise the program
+- Avoid placing everything in the main block
+- Reuse the logic
+- Make testing easier
+- Improve readability
+
+---
+
+## 10. Main program condition
+
+```python
+if __name__ == "__main__":
+```
+
+This checks whether the Python file is being executed directly.
+
+The code inside it runs when we execute:
+
+```bash
+python designer_door_mat.py
+```
+
+It does not automatically run when the file is imported into another Python program.
+
+---
+
+## 11. Input validation
+
+The program checks whether `N` is a positive odd number.
+
+```python
+if n <= 0 or n % 2 == 0:
+    print("N must be a positive odd number.")
+```
+
+It also checks whether `M` is three times `N`.
+
+```python
+elif m != n * 3:
+    print("M must be three times N.")
+```
+
+This prevents invalid input from producing an incorrect design.
+
+---
+
+## Complete Program Flow
+
+```text
+Read N and M
+      ↓
+Check whether N is positive and odd
+      ↓
+Check whether M equals N × 3
+      ↓
+Print the increasing upper pattern
+      ↓
+Print WELCOME in the centre
+      ↓
+Print the decreasing lower pattern
+```
+
+---
+
+## What I Revised Today
+
+Today I revised:
+
+- Odd and even number checking
+- Finding the middle position
+- Integer division using `//`
+- Remainder checking using `%`
+- Multiple input using `split()` and `map()`
+- `for` loops
+- Increasing ranges
+- Decreasing ranges
+- String multiplication
+- String centring
+- Functions
+- Input validation
+- Symmetrical pattern printing
+- The `if __name__ == "__main__"` condition
+
+---
+
+## Final Understanding
+
+The most important logic is:
+
+```python
+for pattern_count in range(1, n, 2):
+```
+
+This creates the increasing upper half.
+
+```python
+print("WELCOME".center(m, "-"))
+```
+
+This creates the centre row.
+
+```python
+for pattern_count in range(n - 2, 0, -2):
+```
+
+This creates the decreasing lower half.
+
+The overall pattern is:
+
+```text
+Increase
+   ↓
+Centre
+   ↓
+Decrease
+```
