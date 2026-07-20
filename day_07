@@ -1,0 +1,46 @@
+"""
+HackerRank Problem: String Split and Join
+
+Task:
+Take a string containing space-separated words and replace the spaces
+with hyphens.
+
+Example:
+Input:  this is a string
+Output: this-is-a-string
+"""
+
+
+def split_and_join(line: str) -> str:
+    """
+    Split the input string using spaces and join the words using hyphens.
+
+    Args:
+        line: A string containing space-separated words.
+
+    Returns:
+        A string where the spaces are replaced with hyphens.
+    """
+
+    words = line.split(" ")
+    result = "-".join(words)
+
+    return result
+
+
+def main() -> None:
+    """Read input from the user and display the result."""
+
+    line = input("Enter a sentence: ")
+
+    if not line.strip():
+        print("Please enter a valid sentence.")
+        return
+
+    result = split_and_join(line)
+
+    print("Result:", result)
+
+
+if __name__ == "__main__":
+    main()
