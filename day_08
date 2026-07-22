@@ -1,0 +1,112 @@
+"""
+Valid Brackets Checker
+
+This program checks whether brackets are correctly balanced.
+
+DSA concept:
+    Stack
+
+Author learning difficulties:
+    1. Understanding the difference between list length and last index.
+    2. Understanding the `-> bool` return type hint.
+    3. Understanding why the latest opening bracket must be checked first.
+    4. Understanding that pop() removes and returns the last item.
+"""
+
+
+def is_valid_brackets(expression: str) -> bool:
+    """
+    Check whether brackets in an expression are valid.
+
+    Args:
+        expression: A string containing (), {}, and [] brackets.
+
+    Returns:
+        True if all brackets are balanced and correctly ordered.
+        False otherwise.
+    """
+
+    # A list is used as a stack.
+    # Opening brackets will be stored here.
+    stack: list[str] = []
+
+    # Each closing bracket is connected to its expected opening bracket.
+    matching_brackets: dict[str, str] = {
+        ")": "(",
+        "}": "{",
+        "]": "[",
+    }
+
+    # Read every bracket in the expression one by one.
+    for bracket in expression:
+
+        # Opening brackets are added to the stack.
+        if bracket in "({[":
+            stack.append(bracket)
+
+        # Otherwise, the current character is a closing bracket.
+        else:
+            # Difficulty learned:
+            # A closing bracket cannot appear when the stack is empty.
+            #
+            # Example:
+            # Input: "}"
+            #
+            # There is no opening "{" available to match it.
+            if len(stack) == 0:
+                return False
+
+            # pop() removes and returns the latest opening bracket.
+            #
+            # Stack follows:
+            # Last In, First Out
+            last_opening_bracket = stack.pop()
+
+            # Check whether the latest opening bracket matches
+            # the current closing bracket.
+            if last_opening_bracket != matching_brackets[bracket]:
+                return False
+
+    # Difficulty learned:
+    # No mismatch may be found, but opening brackets can still remain.
+    #
+    # Example:
+    # Input: "((("
+    #
+    # Therefore, the stack must be empty at the end.
+    return len(stack) == 0
+
+
+def run_tests() -> None:
+    """Run multiple test cases and display their results."""
+
+    test_cases: list[tuple[str, bool]] = [
+        ("()", True),
+        ("({[]})", True),
+        ("([)]", False),
+        ("(((", False),
+        ("}{", False),
+        ("{[()]}", True),
+        ("", True),
+        ("(()", False),
+        ("[]{}()", True),
+    ]
+
+    print("Valid Brackets Checker")
+    print("-" * 50)
+
+    for expression, expected_result in test_cases:
+        actual_result = is_valid_brackets(expression)
+
+        status = "PASS" if actual_result == expected_result else "FAIL"
+
+        print(
+            f"Input: {expression!r:<12} "
+            f"Expected: {expected_result:<5} "
+            f"Actual: {actual_result:<5} "
+            f"Status: {status}"
+        )
+
+
+if __name__ == "__main__":
+    run_tests()
