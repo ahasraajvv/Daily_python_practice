@@ -854,3 +854,637 @@ Centre
    ↓
 Decrease
 ```
+
+
+day -08
+# Valid Brackets Checker Using Stack
+
+## Project Overview
+
+This Python program checks whether brackets in a given expression are correctly balanced.
+
+The supported brackets are:
+
+```text
+()
+{}
+[]
+```
+
+Examples:
+
+```text
+({[]})  → Valid
+([)]    → Invalid
+(((     → Invalid
+```
+
+---
+
+## Concepts I Learned
+
+### 1. Function
+
+A function is a reusable block of code that performs a specific task.
+
+```python
+def is_valid_brackets(expression):
+    pass
+```
+
+Here:
+
+* `def` creates a function.
+* `is_valid_brackets` is the function name.
+* `expression` is the input received by the function.
+
+---
+
+### 2. Type Hints
+
+```python
+def is_valid_brackets(expression: str) -> bool:
+```
+
+Type hints describe what type of data a function expects and returns.
+
+### `expression: str`
+
+```python
+expression: str
+```
+
+This means the `expression` parameter is expected to be a string.
+
+Example:
+
+```python
+is_valid_brackets("({[]})")
+```
+
+The input `"({[]})"` is a string.
+
+### `-> bool`
+
+```python
+-> bool
+```
+
+The arrow does not perform a calculation.
+
+It is a type hint that says:
+
+> This function is expected to return a Boolean value.
+
+A Boolean has only two possible values:
+
+```python
+True
+False
+```
+
+Example:
+
+```python
+def is_adult(age: int) -> bool:
+    return age >= 18
+```
+
+Calling:
+
+```python
+is_adult(20)
+```
+
+returns:
+
+```text
+True
+```
+
+Important:
+
+```python
+-> bool
+```
+
+does not force Python to return a Boolean. It only informs programmers, editors, and type-checking tools about the expected return type.
+
+---
+
+### 3. Boolean Values
+
+A Boolean represents whether something is true or false.
+
+```python
+True
+False
+```
+
+In this project:
+
+```python
+return True
+```
+
+means the expression has valid brackets.
+
+```python
+return False
+```
+
+means the expression has invalid brackets.
+
+Comparisons automatically produce Boolean values:
+
+```python
+5 > 2
+```
+
+Result:
+
+```text
+True
+```
+
+```python
+len(stack) == 0
+```
+
+Result:
+
+* `True` when the stack is empty.
+* `False` when the stack contains items.
+
+---
+
+### 4. List
+
+A list stores multiple values.
+
+```python
+stack = []
+```
+
+This creates an empty list.
+
+Example:
+
+```python
+stack = ["(", "{", "["]
+```
+
+The number of items is:
+
+```python
+len(stack)
+```
+
+Result:
+
+```text
+3
+```
+
+List indexing starts from `0`.
+
+```text
+Index:  0    1    2
+Value:  (    {    [
+```
+
+The last item can be accessed using:
+
+```python
+stack[-1]
+```
+
+---
+
+### 5. Stack Data Structure
+
+A stack follows the rule:
+
+```text
+Last In, First Out
+```
+
+It is also called:
+
+```text
+LIFO
+```
+
+The last item added is the first item removed.
+
+Example:
+
+```python
+stack = []
+
+stack.append("(")
+stack.append("{")
+stack.append("[")
+```
+
+Stack:
+
+```text
+["(", "{", "["]
+```
+
+Using:
+
+```python
+stack.pop()
+```
+
+removes:
+
+```text
+[
+```
+
+because it was added last.
+
+The stack is useful for brackets because the most recently opened bracket must be closed first.
+
+---
+
+### 6. `append()`
+
+```python
+stack.append(bracket)
+```
+
+`append()` adds an item to the end of a list.
+
+Example:
+
+```python
+stack = []
+stack.append("(")
+```
+
+Result:
+
+```text
+["("]
+```
+
+---
+
+### 7. `pop()`
+
+```python
+last_opening_bracket = stack.pop()
+```
+
+`pop()` removes and returns the last item in a list.
+
+Example:
+
+```python
+stack = ["(", "{", "["]
+
+removed_value = stack.pop()
+```
+
+After this:
+
+```text
+removed_value = "["
+stack = ["(", "{"]
+```
+
+---
+
+### 8. Dictionary
+
+A dictionary stores data as key-value pairs.
+
+```python
+matching_brackets = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+}
+```
+
+Here:
+
+```text
+Key   Value
+)  →  (
+}  →  {
+]  →  [
+```
+
+Calling:
+
+```python
+matching_brackets[")"]
+```
+
+returns:
+
+```text
+(
+```
+
+This helps the program find the opening bracket expected for each closing bracket.
+
+---
+
+### 9. `for` Loop
+
+```python
+for bracket in expression:
+```
+
+The loop reads every character in the string one by one.
+
+For:
+
+```text
+({[]})
+```
+
+The loop reads:
+
+```text
+(
+{
+[
+]
+}
+)
+```
+
+---
+
+### 10. Membership Operator `in`
+
+```python
+if bracket in "({[":
+```
+
+This checks whether the current character exists inside the string `"({["`.
+
+It returns `True` when the character is an opening bracket.
+
+Examples:
+
+```python
+"(" in "({["     # True
+"]" in "({["     # False
+```
+
+---
+
+### 11. `len()`
+
+```python
+len(stack)
+```
+
+`len()` returns the number of items inside a list.
+
+Example:
+
+```python
+stack = ["(", "{"]
+print(len(stack))
+```
+
+Output:
+
+```text
+2
+```
+
+The number of items and the last index are different.
+
+```text
+Number of items = 4
+Last index      = 3
+```
+
+Formula:
+
+```python
+last_index = len(list_name) - 1
+```
+
+---
+
+### 12. `return`
+
+`return` sends a result back from a function and immediately stops that function.
+
+```python
+return False
+```
+
+Once Python executes this line, the remaining function code is not executed.
+
+Example:
+
+```python
+def check_number(number):
+    if number < 0:
+        return False
+
+    return True
+```
+
+---
+
+## Program Logic
+
+```text
+Receive the bracket expression
+          ↓
+Create an empty stack
+          ↓
+Read each bracket
+          ↓
+Is it an opening bracket?
+     ├── Yes → Add it to the stack
+     └── No  → It is a closing bracket
+                         ↓
+                Is the stack empty?
+                  ├── Yes → Return False
+                  └── No  → Remove the latest opening bracket
+                                     ↓
+                          Check whether both brackets match
+                              ├── No  → Return False
+                              └── Yes → Continue
+          ↓
+After checking all brackets
+          ↓
+Is the stack empty?
+     ├── Yes → Return True
+     └── No  → Return False
+```
+
+---
+
+## Example Trace
+
+Input:
+
+```text
+({[]})
+```
+
+| Current bracket | Action                 | Stack             |
+| --------------- | ---------------------- | ----------------- |
+| `(`             | Add opening bracket    | `["("]`           |
+| `{`             | Add opening bracket    | `["(", "{"]`      |
+| `[`             | Add opening bracket    | `["(", "{", "["]` |
+| `]`             | Matches `[`, remove it | `["(", "{"]`      |
+| `}`             | Matches `{`, remove it | `["("]`           |
+| `)`             | Matches `(`, remove it | `[]`              |
+
+The final stack is empty, so the output is:
+
+```text
+True
+```
+
+---
+
+## Difficulties I Faced
+
+### Difference Between Length and Index
+
+I initially confused the number of items with the index of the last item.
+
+For:
+
+```python
+numbers = [10, 20, 30, 40]
+```
+
+```text
+Number of items = 4
+Last index      = 3
+```
+
+This is because Python indexing starts from `0`.
+
+---
+
+### Understanding `-> bool`
+
+I initially thought the arrow might perform an operation.
+
+I learned that:
+
+```python
+-> bool
+```
+
+is only a type hint showing that the function is expected to return `True` or `False`.
+
+---
+
+### Understanding Stack Order
+
+I had to understand why the program checks the last opening bracket instead of the first one.
+
+For:
+
+```text
+({[]})
+```
+
+The `[` bracket is opened last, so it must close first.
+
+This follows:
+
+```text
+Last In, First Out
+```
+
+---
+
+### Understanding `pop()`
+
+I learned that `pop()` does two things:
+
+1. Removes the last item.
+2. Returns the removed item.
+
+```python
+last_opening_bracket = stack.pop()
+```
+
+---
+
+### Understanding the Final Stack Check
+
+Even when no wrong closing bracket is found, opening brackets may still remain.
+
+Example:
+
+```text
+(((
+```
+
+The stack is not empty after the loop, so the expression is invalid.
+
+```python
+return len(stack) == 0
+```
+
+returns `True` only when every opening bracket has been closed.
+
+---
+
+## Time Complexity
+
+```text
+O(n)
+```
+
+The program checks every character once.
+
+Here, `n` is the number of brackets in the expression.
+
+---
+
+## Space Complexity
+
+```text
+O(n)
+```
+
+In the worst case, every character may be an opening bracket and will be stored in the stack.
+
+Example:
+
+```text
+(((((((
+```
+
+---
+
+## What I Practised
+
+* Python functions
+* Function parameters
+* Type hints
+* Boolean values
+* Lists
+* Dictionaries
+* Stack data structure
+* `append()`
+* `pop()`
+* `len()`
+* `for` loops
+* `if` conditions
+* Membership checking using `in`
+* Returning values from functions
+* Time and space complexity
