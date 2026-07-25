@@ -1488,3 +1488,21 @@ Example:
 * Membership checking using `in`
 * Returning values from functions
 * Time and space complexity
+
+
+# Day 09 – First Non-Repeating Character
+
+## Problem
+
+The goal of this program is to find the first character in a string that occurs only once.
+
+If all the characters are repeated, the program returns `-1`.
+
+---
+
+## Example
+
+### Input
+
+```text
+swiss
