@@ -1,0 +1,63 @@
+"""
+Day 09 - First Non-Repeating Character
+
+Problem:
+Find the first character in a string that appears only once.
+
+Example:
+Input: swiss
+Output: w
+
+If every character is repeated, return -1.
+"""
+
+
+def first_non_repeating_character(text):
+    """
+    Returns the first non-repeating character in the given string.
+
+    Parameters:
+        text (str): The string that needs to be checked.
+
+    Returns:
+        str: The first non-repeating character.
+        int: -1 if every character is repeated.
+    """
+
+    character_count = {}
+
+    # First loop: Count the frequency of every character
+    for character in text:
+        character_count[character] = character_count.get(character, 0) + 1
+
+    # Second loop: Find the first character with a frequency of 1
+    for character in text:
+        if character_count[character] == 1:
+            return character
+
+    # Return -1 when every character is repeated
+    return -1
+
+
+def main():
+    """Runs the program and handles user input."""
+
+    user_input = input("Enter a string: ")
+
+    if not user_input:
+        print("The input string cannot be empty.")
+        return
+
+    result = first_non_repeating_character(user_input)
+
+    if result == -1:
+        print("There is no non-repeating character.")
+    elif result == " ":
+        print("The first non-repeating character is a space.")
+    else:
+        print("The first non-repeating character is:", result)
+
+
+# Run main() only when this file is executed directly
+if __name__ == "__main__":
+    main()
