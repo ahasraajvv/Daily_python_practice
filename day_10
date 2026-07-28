@@ -1,0 +1,15 @@
+# fins the second largest number 
+  def second_largest(nums):
+    unique_nums = list(set(nums))
+
+    if len(unique_nums) < 2:
+        return "No second largest element."
+
+    unique_nums.sort(reverse=True)
+    return unique_nums[1]
+
+
+numbers = [10, 20, 5, 20, 8]
+print("Second Largest:", second_largest(numbers))
+
+      
