@@ -1506,3 +1506,15 @@ If all the characters are repeated, the program returns `-1`.
 
 ```text
 swiss
+
+
+# Day 10 - Concepts Learned
+
+1. Learned how to remove duplicate values using set().
+2. Converted a set back into a list using list().
+3. Used len() to validate the number of unique elements.
+4. Sorted a list in descending order using sort(reverse=True).
+5. Accessed elements using list indexing.
+6. Returned values from a function.
+7. Handled edge cases where a second largest element does not exist.
+8. Improved understanding of list manipulation and basic problem-solving.
