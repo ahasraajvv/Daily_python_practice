@@ -1,0 +1,37 @@
+
+def productExceptSelf(nums):
+    """
+    Returns an array answer such that answer[i] is the product of all elements
+    of nums except nums[i], without using division and in O(n) time.
+    """
+    n = len(nums)
+    answer = [1] * n
+
+    # First pass: left product (prefix)
+    prefix = 1
+    for i in range(n):
+        answer[i] = prefix      # store product of elements to the left
+        prefix *= nums[i]       # update prefix to include current element
+
+    # Second pass: right product (suffix)
+    suffix = 1
+    for i in range(n - 1, -1, -1):
+        answer[i] *= suffix     # multiply by product of elements to the right
+        suffix *= nums[i]       # update suffix for next left index
+
+    return answer
+
+# ============================================================
+# Example usage
+if __name__ == "__main__":
+    # Example 1
+    nums1 = [1, 2, 3, 4]
+    result1 = productExceptSelf(nums1)
+    print(f"Input: {nums1}")
+    print(f"Output: {result1}")  # Expected: [24, 12, 8, 6]
+
+    # Example 2
+    nums2 = [-1, 1, 0, -3, 3]
+    result2 = productExceptSelf(nums2)
+    print(f"\nInput: {nums2}")
+    print(f"Output: {result2}")  # Expected: [0, 0, 9, 0, 0]
