@@ -1518,3 +1518,64 @@ swiss
 6. Returned values from a function.
 7. Handled edge cases where a second largest element does not exist.
 8. Improved understanding of list manipulation and basic problem-solving.
+
+
+# Concepts Learned – Product of Array Except Self
+
+## 1. Prefix & Suffix Products
+- **Prefix product (left product)**: Product of all elements to the *left* of the current index.
+- **Suffix product (right product)**: Product of all elements to the *right* of the current index.
+- The final answer for each index is simply `left_product[i] × right_product[i]`.
+- Understanding the decomposition of the problem into left and right parts is the crux of the solution.
+
+## 2. Why Division Is Not Allowed (or Not Preferred)
+- Direct division `(total_product / nums[i])` is trivial but:
+  - It breaks when `nums[i] = 0` (division by zero).
+  - It can cause precision issues in languages with floating-point representation.
+  - The problem explicitly forbids it to test alternative logical reasoning.
+
+## 3. Using Running Variables for O(1) Extra Space
+- Instead of storing two separate arrays for left and right products, we use running variables (`prefix` and `suffix`).
+- **First pass (left → right):** A single integer `prefix` maintains the product of all elements seen so far. This is stored directly into the output array `answer[i]`, representing the left product.
+- **Second pass (right → left):** A single integer `suffix` maintains the product of all elements to the right. The output array is updated in-place by multiplying the existing left product with the current right product.
+- This achieves **O(1) extra space** (excluding the output array), which is a common optimization in array problems.
+
+## 4. Time Complexity Analysis
+- Two independent passes over the array → **O(n)** time.
+- No nested loops. Each pass does constant work per element.
+- **O(n)** is optimal for this problem because we must examine every element at least once.
+
+## 5. In-Place Array Manipulation
+- The output array is used as a temporary store for left products, then overwritten with the final answer.
+- This pattern of reusing an array to reduce memory footprint is frequently seen in problems like “Trapping Rain Water”, “Maximum Product Subarray”, etc.
+
+## 6. Handling Zeros Correctly
+- The algorithm naturally handles zeros without special cases.
+- Example: `[-1, 1, 0, -3, 3]`  
+  - Left pass gives `[1, -1, -1, 0, 0]` (note how the zero propagates).  
+  - Right pass multiplies by suffix, and the only non-zero answer comes from the index where the zero itself is, because the left product (ignoring the zero) and right product (ignoring the zero) both become non-zero, resulting in `9`.
+- This shows that prefix/suffix logic elegantly sidesteps zero-division issues.
+
+## 7. Edge Cases
+- **All positive/negative numbers:** Algorithm works unchanged.
+- **Array length 2:** Minimal case, still correct.  
+  Example: `[4, 5]` → left pass `[1, 4]`, right pass → `[1×5=5, 4×1=4]`.
+- **Multiple zeros:** e.g., `[0, 0, 1]` → output `[0, 0, 0]` because every position sees at least one zero in its left or right product.
+
+## 8. Problem-Solving Pattern: “Except Self”
+- This is a classic **array transformation** pattern where the result at index i depends on all elements except i.
+- Solving it using **two passes with accumulators** is a reusable blueprint:
+  1. Forward pass to accumulate the “before” effect.
+  2. Backward pass to accumulate the “after” effect.
+- Similar problems: “Left and Right Sum Differences”, “Replace Elements with Greatest Element on Right Side”, etc.
+
+## 9. Code Implementation Takeaways
+- Using `answer = [1] * n` initialises an array with neutral multiplicative identity.
+- Loop `for i in range(n)` for forward; `for i in range(n-1, -1, -1)` for backward.
+- Updating prefix/suffix **after** storing the value ensures the current index is excluded.
+- The order of operations matters:  
+  `answer[i] = prefix` then `prefix *= nums[i]` ensures `nums[i]` is not included in its own left product.
+
+## 10. Practical Applications
+- Used in scenarios where global aggregation must exclude a local element (e.g., rating systems, normalisation without self-influence).
+- Demonstrates mastery of array traversal and cumulative operations – essential for intermediate/advanced DSA rounds.
